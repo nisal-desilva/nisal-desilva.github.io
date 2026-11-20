@@ -126,16 +126,30 @@
         .join("");
 
       const imagesHtml = (proj.images || [])
-        .map((src) => `<img src="${src}" alt="${proj.title}" class="detail-img" />`)
+        .map((item) => {
+          const src = typeof item === "string" ? item : item.src;
+          const caption = typeof item === "string" ? "" : (item.caption || "");
+          if (!src) return "";
+          return `
+            <figure class="gallery-item">
+              <img src="${src}" alt="${caption || proj.title}" class="detail-img" />
+              ${caption ? `<figcaption class="img-caption">${caption}</figcaption>` : ""}
+            </figure>
+          `;
+        })
         .join("");
 
       const githubLinkHtml = proj.githubUrl
         ? `<a class="btn-primary" href="${proj.githubUrl}" target="_blank" rel="noopener">Open GitHub Repository</a>`
         : `<p class="muted-note">No separate GitHub repository for this project; code, circuit diagram, and presentation assets are archived offline.</p>`;
 
-      const videoLinkHtml = proj.videoUrl
-        ? `<p><a class="btn-secondary" href="${proj.videoUrl}" target="_blank" rel="noopener">Watch Presentation / Demo Video</a></p>`
-        : "";
+      const videosHtml = (proj.videos || [])
+        .filter((v) => v && v.url)
+        .map(
+          (v) =>
+            `<a class="btn-secondary" href="${v.url}" target="_blank" rel="noopener">${v.label || "Watch Video"}</a>`
+        )
+        .join("");
 
       modalBodyEl.innerHTML = `
         <p class="term-label">${proj.term || ""} ${proj.year ? "· " + proj.year : ""}</p>
