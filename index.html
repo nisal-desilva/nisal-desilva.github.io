@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nisal De Silva | Projects Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 id="profile-name"></h1>
+      <p id="profile-role" class="subtitle"></p>
+      <p id="profile-summary" class="bio"></p>
+      <div class="header-links">
+        <a id="profile-github" href="#" target="_blank" rel="noopener">GitHub Profile</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="filters-bar" aria-label="Filter projects">
+      <div id="filter-buttons" class="filter-buttons"></div>
+    </section>
+
+    <section id="projects-grid" class="projects-grid" aria-live="polite"></section>
+  </main>
+
+  <div id="project-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop" id="modal-close-backdrop"></div>
+    <div class="modal-content">
+      <button id="modal-close-btn" class="modal-close" aria-label="Close details">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="projects.js"></script>
+  <script>
+    document.getElementById("profile-name").textContent = PROFILE.name;
+    document.getElementById("profile-role").textContent = PROFILE.role;
+    document.getElementById("profile-summary").textContent = PROFILE.summary;
+    document.getElementById("profile-github").href = PROFILE.github;
+
+    const gridEl = document.getElementById("projects-grid");
+    const filtersEl = document.getElementById("filter-buttons");
+    const modalEl = document.getElementById("project-modal");
+    const modalBodyEl = document.getElementById("modal-body");
+
+    const categories = ["All", ...new Set(PROJECTS.flatMap((p) => p.category || []))];
+    let activeCategory = "All";
+
+    function renderFilters() {
+      filtersEl.innerHTML = "";
+      categories.forEach((cat) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "filter-btn" + (cat === activeCategory ? " active" : "");
+        btn.textContent = cat;
+        btn.addEventListener("click", () => {
+          activeCategory = cat;
+          renderFilters();
+          renderProjects();
+        });
+        filtersEl.appendChild(btn);
+      });
+    }
+
+    function renderProjects() {
+      const filtered =
+        activeCategory === "All"
+          ? PROJECTS
+          : PROJECTS.filter((p) => (p.category || []).includes(activeCategory));
+
+      gridEl.innerHTML = "";
+      filtered.forEach((proj) => {
+        const card = document.createElement("article");
+        card.className = "project-card";
+
+        const tagsHtml = (proj.techStack || [])
+          .slice(0, 4)
+          .map((t) => `<span class="tag">${t}</span>`)
+          .join("");
+
+        const repoBadge = proj.githubUrl
+          ? `<span class="badge badge-repo">Has GitHub Repo</span>`
+          : `<span class="badge badge-local">Local / Hardware Assets</span>`;
+
+        card.innerHTML = `
+          <div class="card-top">
+            <span class="term-label">${proj.term || ""}</span>
+            ${repoBadge}
+          </div>
+          <h3>${proj.title}</h3>
+          <p class="card-summary">${proj.summary}</p>
+          <div class="tags">${tagsHtml}</div>
+          <button type="button" class="btn-primary open-detail-btn" data-id="${proj.id}">
+            View Project Details
+          </button>
+        `;
+        gridEl.appendChild(card);
+      });
+
+      document.querySelectorAll(".open-detail-btn").forEach((btn) => {
+        btn.addEventListener("click", () => openProjectModal(btn.dataset.id));
+      });
+    }
+
+    function openProjectModal(id) {
+      const proj = PROJECTS.find((p) => p.id === id);
+      if (!proj) return;
+
+      const contributorsHtml = (proj.contributors || [])
+        .map((c) =>
+          c.url
+            ? `<li><a href="${c.url}" target="_blank" rel="noopener">${c.name}</a> — ${c.role}</li>`
+            : `<li>${c.name} — ${c.role}</li>`
+        )
+        .join("");
+
+      const highlightsHtml = (proj.highlights || [])
+        .map((h) => `<li>${h}</li>`)
+        .join("");
+
+      const stackHtml = (proj.techStack || [])
+        .map((t) => `<span class="tag">${t}</span>`)
+        .join("");
+
+      const imagesHtml = (proj.images || [])
+        .map((src) => `<img src="${src}" alt="${proj.title}" class="detail-img" />`)
+        .join("");
+
+      const githubLinkHtml = proj.githubUrl
+        ? `<a class="btn-primary" href="${proj.githubUrl}" target="_blank" rel="noopener">Open GitHub Repository</a>`
+        : `<p class="muted-note">No separate GitHub repository for this project; code, circuit diagram, and presentation assets are archived offline.</p>`;
+
+      const videoLinkHtml = proj.videoUrl
+        ? `<p><a class="btn-secondary" href="${proj.videoUrl}" target="_blank" rel="noopener">Watch Presentation / Demo Video</a></p>`
+        : "";
+
+      modalBodyEl.innerHTML = `
+        <p class="term-label">${proj.term || ""} ${proj.year ? "· " + proj.year : ""}</p>
+        <h2 id="modal-title">${proj.title}</h2>
+        <p>${proj.summary}</p>
+
+        <h4>My Contribution</h4>
+        <p>${proj.myContribution || "To be updated."}</p>
+
+        <h4>Contributors</h4>
+        <ul class="detail-list">${contributorsHtml}</ul>
+
+        <h4>Key Notes & Results</h4>
+        <ul class="detail-list">${highlightsHtml}</ul>
+
+        <h4>Tools & Technologies</h4>
+        <div class="tags">${stackHtml}</div>
+
+        ${imagesHtml ? `<h4>Photos & Diagrams</h4><div class="gallery">${imagesHtml}</div>` : ""}
+
+        <div class="modal-actions">
+          ${githubLinkHtml}
+          ${videoLinkHtml}
+        </div>
+      `;
+
+      modalEl.classList.remove("hidden");
+    }
+
+    function closeModal() {
+      modalEl.classList.add("hidden");
+    }
+
+    document.getElementById("modal-close-btn").addEventListener("click", closeModal);
+    document.getElementById("modal-close-backdrop").addEventListener("click", closeModal);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+
+    renderFilters();
+    renderProjects();
+  </script>
+</body>
+</html>
