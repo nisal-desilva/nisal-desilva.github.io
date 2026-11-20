@@ -41,7 +41,22 @@ const PROJECTS = [
     githubUrl: "", // Leave empty when no repo exists
     videoUrl: "",  // Optional YouTube watch/embed URL
     images: [
-      // Example: "assets/driver-drowsiness-pi/prototype.jpg"
+      {
+        src: "assets/driver-drowsiness-pi/Basic_Circuit_Diagram.jpg",
+        caption: "Basic Circuit Diagram"
+      },
+      {
+        src: "assets/driver-drowsiness-pi/Outer_View.jpg",
+        caption: "Outer View"
+      },
+      {
+        src: "assets/driver-drowsiness-pi/Complete_Setup.jpg",
+        caption: "Complete Setup"
+      },
+      {
+        src: "assets/driver-drowsiness-pi/Group_Photo.jpg",
+        caption: "Group Photo"
+      }
     ]
   }
 ];
