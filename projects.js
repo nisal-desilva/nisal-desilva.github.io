@@ -1,9 +1,9 @@
 const PROFILE = {
-  name: "Nisal De Silva",
+  name: "Nisal Dinupiya De Silva",
   role: "Electronic & Telecommunication Engineering Undergraduate",
   github: "https://github.com/nisal-desilva",
   summary:
-    "Centralized hub of hardware prototypes, embedded systems, and software projects."
+    "Centralized hub of information about Individual and Group projects I have worked on."
 };
 
 const PROJECTS = [
@@ -17,12 +17,12 @@ const PROJECTS = [
     summary:
       "Real-time Raspberry Pi 4 drowsiness prototype using OpenCV and Dlib facial landmarks to track Eye Aspect Ratio (EAR), paired with low-light enhancement, OLED/LED/buzzer alerts, and Telegram notifications.",
     myContribution:
-      "Add your specific contribution here once finalized (e.g., hardware wiring, CV pipeline, or alert logic).",
+      "Algorithm Design, Alert logic and Hardware implementation",
     contributors: [
-      { name: "Dananjaya R.P.A. (240084A)", role: "Team Member", url: "" },
-      { name: "De Silva N.D. (240099A)", role: "Team Member", url: "" },
-      { name: "Dewmina K.U. (240116C)", role: "Team Member", url: "" },
-      { name: "Didulanga M.I. (240125D)", role: "Team Member", url: "" }
+      { name: "Dananjaya R.P.A.", role: "Team Member", url: "https://github.com/AnushaDananjaya" },
+      { name: "De Silva N.D.", role: "Team Member", url: "https://github.com/nisal-desilva" },
+      { name: "Dewmina K.U.", role: "Team Member", url: "https://github.com/KUDewmina" },
+      { name: "Didulanga M.I.", role: "Team Leader", url: "https://github.com/inethdidu-hub" }
     ],
     techStack: [
       "Raspberry Pi 4",
