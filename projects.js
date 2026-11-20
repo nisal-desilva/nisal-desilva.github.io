@@ -38,7 +38,7 @@ const PROJECTS = [
       "CLAHE + gamma brightness adaptation and frame-buffer flushing for lower latency",
       "Noted limits: complete darkness (non-IR camera), reflective spectacles, and camera distance"
     ],
-    githubUrl: "", // Leave empty when no repo exists
+    githubUrl: "https://github.com/nisal-desilva/Driver_Drowsiness_Detection", // Leave empty when no repo exists
     videoUrl: "",  // Optional YouTube watch/embed URL
     images: [
       {
