@@ -61,7 +61,7 @@ const PROJECTS = [
       { src: "assets/zone-noise-monitor/initial_design.jpeg", caption: "Initial Handsketches" },
       { src: "assets/zone-noise-monitor/display_in_progress.jpeg", caption: "Display Creation in progress" },
       { src: "assets/zone-noise-monitor/app_interface.jpeg", caption: "Interface of Mobile Application" },
-      { src: "assets/zone-noise-monitor/final-product_in_action.jpeg", caption: "Z.O.N.E. unit in Action" },
+      { src: "assets/zone-noise-monitor/final_product_in_action.jpeg", caption: "Z.O.N.E. unit in Action" },
       { src: "assets/zone-noise-monitor/group_photo.jpeg", caption: "Team Eigenss with Z.O.N.E" }
     ]
   },
