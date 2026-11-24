@@ -8,6 +8,60 @@ const PROFILE = {
 
 const PROJECTS = [
   {
+    id: "zone-noise-monitor",
+    title: "Z.O.N.E. — Zonal Observer for Noise Evaluation",
+    term: "Semester 2 · EN1190 Group Project",
+    year: "2026",
+    category: ["Embedded", "IoT", "PCB & Hardware", "Group Project"],
+    status: "Near-Product / Pilot-Ready",
+    summary:
+      "Wall-mounted automated noise monitoring and alert system built on an ESP32-S3 with three I2S MEMS microphones, a custom addressable LED 3-digit display and warning ring, voice alerts via MAX98357A, and a mobile app synced via BLE and Firebase.",
+    myContribution:
+      "Core operating algorithm and alert/threshold logic design, firmware development, input/output component selection, and custom LED display design and creation within the enclosure.",
+    contributors: [
+      {
+        name: "J.A.D.P. Piniwan (240514U)",
+        role: "PCB Design, Controller/Power Selection & BOM",
+        url: "https://github.com/piniwanjayasuriya-commits"
+      },
+      {
+        name: "N.D. De Silva (240099A)",
+        role: "Algorithm & Firmware, I/O Selection & Display/Enclosure",
+        url: "https://github.com/nisal-desilva"
+      },
+      {
+        name: "Y.V. Gunawardena (240202L)",
+        role: "Enclosure Design, Material Selection & BOM",
+        url: "https://github.com/Yenumi"
+      },
+      {
+        name: "I.A. Gunawardhena (240204U)",
+        role: "PCB Design & App-Device Communication Network",
+        url: "https://github.com/isula2004"
+      }
+    ],
+    techStack: [
+      "ESP32-S3-WROOM-1",
+      "INMP441 I2S Mics",
+      "MAX98357A I2S Amp",
+      "Addressable LEDs",
+      "BLE & Firebase",
+      "LittleFS",
+      "SolidWorks 2025"
+    ],
+    highlights: [
+      "Validated with a 68-student survey and university Head Librarian feedback; displays live noise as a threshold percentage rather than raw dB",
+      "Measured sound fluctuations up to ~30 m; power draw ~4 W avg / 5.35 W max locally and ~5.70 W avg / 7.15 W max with Wi-Fi",
+      "Estimated prototype BOM of 28,580 LKR (~42,870 LKR small-scale unit price with 50% markup); future work includes slimmer speaker/enclosure (<60 mm) and direction sensing"
+    ],
+    githubUrl: "https://github.com/nisal-desilva/ZONE_by_EIGENSS",
+    videos: [],
+    images: [
+      // Example once uploaded:
+      // { src: "assets/zone-noise-monitor/final-product.jpg", caption: "Z.O.N.E. unit during testing" }
+    ]
+  },
+  {
     id: "driver-drowsiness-pi",
     title: "Smart Anti-Sleep Safety Alert for Drivers (Prototype)",
     term: "Term 01 · Group Project",
