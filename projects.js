@@ -20,22 +20,22 @@ const PROJECTS = [
       "Core operating algorithm and alert/threshold logic design, firmware development, input/output component selection, and custom LED display design and creation within the enclosure.",
     contributors: [
       {
-        name: "J.A.D.P. Piniwan (240514U)",
+        name: "J.A.D.P. Piniwan",
         role: "PCB Design, Controller/Power Selection & BOM",
         url: "https://github.com/piniwanjayasuriya-commits"
       },
       {
-        name: "N.D. De Silva (240099A)",
+        name: "N.D. De Silva",
         role: "Algorithm & Firmware, I/O Selection & Display/Enclosure",
         url: "https://github.com/nisal-desilva"
       },
       {
-        name: "Y.V. Gunawardena (240202L)",
+        name: "Y.V. Gunawardana",
         role: "Enclosure Design, Material Selection & BOM",
         url: "https://github.com/Yenumi"
       },
       {
-        name: "I.A. Gunawardhena (240204U)",
+        name: "I.A. Gunawardena",
         role: "PCB Design & App-Device Communication Network",
         url: "https://github.com/isula2004"
       }
@@ -57,8 +57,12 @@ const PROJECTS = [
     githubUrl: "https://github.com/nisal-desilva/ZONE_by_EIGENSS",
     videos: [],
     images: [
-      // Example once uploaded:
-      // { src: "assets/zone-noise-monitor/final-product.jpg", caption: "Z.O.N.E. unit during testing" }
+      
+      { src: "assets/zone-noise-monitor/initial_design.jpeg", caption: "Initial Handsketches" }
+      { src: "assets/zone-noise-monitor/display_in_progress.jpeg", caption: "Display Creation in progress" }
+      { src: "assets/zone-noise-monitor/app_interface.jpeg", caption: "Interface of Mobile Application" }
+      { src: "assets/zone-noise-monitor/final-product_in_action.jpeg", caption: "Z.O.N.E. unit in Action" }
+      { src: "assets/zone-noise-monitor/group_photo.jpeg", caption: "Team Eigenss with Z.O.N.E" }
     ]
   },
   {
